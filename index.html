@@ -38,33 +38,39 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .topo p { margin: 6px 0 0; color: var(--cinza); }
 .topo .aviso { margin: 14px auto 0; max-width: 62ch; color: var(--cinza); font-size: .92rem; }
 
-.legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding-block: 16px 4px; align-items: center; }
-.legenda b { color: var(--cinza); font-size: .85rem; margin-right: 4px; }
-.legenda span { color: #fff; font-weight: 700; font-size: .78rem; padding: 6px 10px; background: var(--c); }
+.legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding-block: 10px 0; align-items: center; }
+.legenda b { color: var(--cinza); font-size: .82rem; margin-right: 2px; }
+.f { font: 700 .78rem var(--fonte); padding: 6px 10px; border: 2px solid var(--c); background: var(--branco); color: var(--c); cursor: pointer; border-radius: 4px; }
+.f[aria-pressed="true"] { background: var(--c); color: #fff; }
+.f:hover { filter: brightness(1.05); }
 
-.dias { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--branco); padding-block: 12px; border-bottom: 1px solid var(--linha); }
-.dias .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 720px; }
-.dias a { background: var(--verde-escuro); color: #fff; text-decoration: none; text-align: center; font-weight: 700; font-size: 1.05rem; line-height: 1.2; padding: 8px 6px; }
-.dias a small { display: block; font-size: .85rem; font-weight: 600; opacity: .9; }
-.dias a:hover { background: var(--verde); }
+.dias { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--branco); padding-block: 12px 0; margin-top: 14px; }
+.dias .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 720px; }
+.dias a { background: var(--bloco); color: var(--verde-escuro); text-decoration: none; text-align: center; font-weight: 700; font-size: 1.05rem; line-height: 1.2; padding: 9px 6px 8px; border-radius: 6px 6px 0 0; border-bottom: 3px solid var(--verde-escuro); }
+.dias a small { display: block; font-size: .85rem; font-weight: 600; opacity: .85; }
+.dias a:hover { background: #E3EBE4; }
+.dias a[aria-current="page"] { background: var(--verde-escuro); color: #fff; }
 
-.dia { background: var(--bloco); margin-top: 22px; padding-block: 18px 22px; scroll-margin-top: 90px; }
+.dia { background: var(--bloco); padding-block: 18px 26px; }
 .dia h2 { margin: 0 0 4px; color: var(--verde-escuro); font-size: 1.45rem; font-weight: 800; }
 .turno { margin: 18px 0 6px; color: var(--cinza); font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.linha { display: grid; grid-template-columns: 120px 1fr; gap: 3px; margin-bottom: 3px; }
-.hora { background: var(--hora); color: #fff; font-weight: 700; font-size: .95rem; display: grid; place-items: center; text-align: center; padding: 10px 6px; font-variant-numeric: tabular-nums; }
-.cards { display: grid; gap: 3px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); min-width: 0; }
-.card { background: var(--c); color: #fff; border: 0; font: inherit; text-align: center; padding: 12px 12px 11px; display: grid; gap: 4px; align-content: center; min-width: 0; }
-button.card { cursor: pointer; }
-button.card:hover { filter: brightness(1.08); }
-.card .t { font-weight: 700; font-size: .95rem; line-height: 1.3; overflow-wrap: anywhere; }
-.card .q { font-style: italic; font-size: .82rem; }
-.card .l { font-size: .82rem; }
-.card .mais { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; opacity: .85; margin-top: 2px; }
-.card .ok { display: inline-block; background: #fff; color: var(--c); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; justify-self: center; }
-.card .agora { display: inline-block; background: #C8102E; color: #fff; font-size: .7rem; font-weight: 800; text-transform: uppercase; padding: 2px 7px; justify-self: center; }
+.linha { display: grid; grid-template-columns: 126px 1fr; gap: 8px; margin-bottom: 8px; }
+.hora { background: var(--hora); color: #fff; font-weight: 700; font-size: .92rem; white-space: nowrap; display: grid; place-items: center; text-align: center; padding: 10px 6px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+.cards { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); min-width: 0; }
+.cards.um { grid-template-columns: 1fr; }
+.card { background: var(--branco); color: var(--texto); border: 1px solid var(--linha); border-radius: 6px; overflow: hidden; font: inherit; text-align: left; padding: 0; display: flex; flex-direction: column; min-width: 0; }
+button.card { cursor: pointer; transition: box-shadow .15s, border-color .15s; }
+button.card:hover { border-color: var(--c); box-shadow: 0 3px 12px rgba(24, 105, 44, .14); }
+.card .cab { background: var(--c); color: #fff; display: flex; justify-content: space-between; gap: 8px; padding: 5px 12px; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.card .cab .agora { background: #fff; color: #C8102E; padding: 0 6px; border-radius: 3px; }
+.card .corpo { padding: 10px 12px 12px; display: grid; gap: 5px; flex: 1; align-content: start; }
+.card .t { font-weight: 700; font-size: .98rem; line-height: 1.3; overflow-wrap: anywhere; }
+.card .q { font-style: italic; font-size: .85rem; color: var(--cinza); }
+.card .l { font-size: .85rem; color: var(--cinza); }
+.card .mais { margin-top: auto; padding-top: 4px; font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--c); }
+.vazio { color: var(--cinza); padding: 16px 0; }
 @media (max-width: 600px) {
-  .linha { grid-template-columns: 1fr; }
+  .linha { grid-template-columns: 1fr; gap: 6px; }
   .hora { place-items: start; text-align: left; padding: 6px 10px; }
   .cards { grid-template-columns: 1fr; }
 }
@@ -73,7 +79,7 @@ footer p { margin: 2px 0; }
 footer .s { color: var(--cinza); font-style: italic; font-size: .85rem; }
 footer .c { color: var(--verde-escuro); font-weight: 700; font-size: .92rem; }
 
-dialog { border: 0; padding: 0; width: min(660px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); background: var(--branco); color: var(--texto); box-shadow: 0 18px 50px rgba(0,0,0,.3); }
+dialog { border: 0; padding: 0; border-radius: 8px; width: min(660px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); background: var(--branco); color: var(--texto); box-shadow: 0 18px 50px rgba(0,0,0,.3); }
 dialog::backdrop { background: rgba(20, 30, 22, .55); }
 .dh { background: var(--c); color: #fff; padding: 16px 56px 18px 20px; position: relative; }
 .dh .k { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; opacity: .9; }
@@ -87,6 +93,7 @@ dialog::backdrop { background: rgba(20, 30, 22, .55); }
 .dados dt { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--cinza); }
 .dados dd { margin: 2px 0 0; font-weight: 700; }
 .quem { display: flex; gap: 12px; align-items: center; }
+.dados div { border-radius: 4px; }
 .foto { flex: none; width: 58px; height: 58px; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 1.1rem; overflow: hidden; }
 .foto img { width: 100%; height: 100%; object-fit: cover; }
 .quem .r { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--cinza); }
@@ -101,7 +108,7 @@ dialog::backdrop { background: rgba(20, 30, 22, .55); }
 .proj .tt { font-weight: 700; overflow-wrap: anywhere; }
 .proj .p { font-size: .85rem; color: var(--cinza); }
 .insc { border-top: 1px solid var(--linha); padding-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.btn { font: 700 .98rem var(--fonte); padding: 11px 18px; border: 0; text-decoration: none; display: inline-block; cursor: pointer; }
+.btn { font: 700 .98rem var(--fonte); padding: 11px 18px; border-radius: 6px; border: 0; text-decoration: none; display: inline-block; cursor: pointer; }
 .btn.ir { background: var(--verde); color: #fff; }
 .btn.ir:hover { background: var(--verde-escuro); }
 .btn.breve { background: var(--bloco); color: var(--cinza); cursor: default; }
@@ -122,19 +129,11 @@ dialog::backdrop { background: rgba(20, 30, 22, .55); }
   <section class="wrap topo">
     <h1>PROGRAMAÇÃO GERAL</h1>
     <p>De 16/11 a 18/11 de 2026 · IFMT Campus Campo Verde</p>
-    <p class="aviso">Clique em uma atividade para ver os detalhes e o link de inscrição. As inscrições são feitas por atividade, no Módulo de Eventos do SUAP.</p>
-    <div class="legenda" aria-label="Legenda de cores">
-      <b>Legenda</b>
-      <span style="--c: var(--ardosia)">Credenciamento e orientações</span>
-      <span style="--c: var(--azul)">Abertura, conferências e encerramento</span>
-      <span style="--c: var(--verde)">Oficinas</span>
-      <span style="--c: var(--roxo)">Exposições, pôsteres e vitrine de projetos</span>
-      <span style="--c: var(--laranja)">Desafio Territórios Sustentáveis</span>
-      <span style="--c: var(--rosa)">Cultura, integração e intervalos</span>
-    </div>
+    <p class="aviso">Clique em uma atividade para ver os detalhes e o link de inscrição. As inscrições são feitas por atividade, no Módulo de Eventos do SUAP. Use as cores da legenda para filtrar.</p>
+    <div class="legenda" id="filtros" role="group" aria-label="Filtrar por tipo de atividade"></div>
   </section>
   <nav class="dias" aria-label="Dias do evento"><div class="wrap" id="botoes"></div></nav>
-  <div id="programacao"></div>
+  <section class="dia"><div class="wrap" id="programacao" aria-live="polite"></div></section>
 </main>
 
 <footer class="wrap">
@@ -161,47 +160,52 @@ const clicavel = a => a.cat !== "apoio";
 function hoje() { const n = new Date(); return n.getFullYear() + "-" + String(n.getMonth() + 1).padStart(2, "0") + "-" + String(n.getDate()).padStart(2, "0"); }
 function agora(a) { const d = DIAS.find(x => x.k === a.dia); if (hoje() !== d.iso) return false; const n = new Date(), m = n.getHours() * 60 + n.getMinutes(); return m >= mins(a.ini) && m < mins(a.fim); }
 
+const FILTROS = [["todas", "Tudo", "--verde-escuro"], ["apoio", "Credenciamento e orientações", "--ardosia"], ["azul", "Abertura, conferências e encerramento", "--azul"], ["oficina", "Oficinas", "--verde"], ["mostra", "Exposições, pôsteres e vitrine de projetos", "--roxo"], ["desafio", "Desafio Territórios Sustentáveis", "--laranja"], ["rosa", "Cultura, integração e intervalos", "--rosa"]];
+const grupoCor = a => ({ "--azul": "azul", "--rosa": "rosa" }[cor(a)] || a.cat);
+let dia = "seg", filtro = "todas";
+try { const f = localStorage.getItem("jenpex_f"); if (FILTROS.some(x => x[0] === f)) filtro = f; } catch (e) {}
+
 function card(a, comHora) {
   const tag = clicavel(a) ? "button" : "div";
   const attrs = clicavel(a) ? ` data-id="${a.id}" aria-haspopup="dialog"` : "";
-  const local = "📍 " + esc(a.local) + (comHora ? "  ·  " + a.ini + " às " + a.fim : "");
-  const selo = agora(a) ? '<span class="agora">Acontecendo agora</span>' : a.link ? '<span class="ok">Inscrições abertas</span>' : "";
+  const tipo = a.id.startsWith("coffee") ? "Intervalo" : a.extra && a.extra.length <= 24 ? a.extra : ROT[a.cat];
+  const dir = agora(a) ? '<span class="agora">Agora</span>' : a.link ? "<span>Inscrições abertas</span>" : a.vagas ? `<span>${a.vagas} vagas</span>` : "";
   return `<${tag} class="card" style="--c: var(${cor(a)})"${attrs}>
-    ${selo}<span class="t">${esc(a.titulo)}</span>
+    <span class="cab"><span>${esc(tipo)}</span>${dir}</span>
+    <span class="corpo"><span class="t">${esc(a.titulo)}</span>
     ${a.quem ? `<span class="q">👤 ${esc(a.quem)}</span>` : ""}
-    <span class="l">${local}</span>
-    ${clicavel(a) ? '<span class="mais">Ver detalhes</span>' : ""}
+    <span class="l">📍 ${esc(a.local)}${comHora ? "  ·  " + a.ini + " às " + a.fim : ""}</span>
+    ${clicavel(a) ? `<span class="mais">${a.insc ? "Ver detalhes e inscrição" : "Ver detalhes"}</span>` : ""}</span>
   </${tag}>`;
 }
 function blocos(itens) {
-  // oficinas do mesmo turno ficam num bloco só, como na planilha; o resto agrupa por horário de início
   const out = [], vistos = new Set();
   for (const a of itens) {
     if (vistos.has(a.id)) continue;
-    const grupo = a.cat === "oficina" ? itens.filter(b => b.cat === "oficina" && b.turno === a.turno) : itens.filter(b => b.ini === a.ini && b.cat !== "oficina");
-    grupo.forEach(b => vistos.add(b.id));
-    out.push(grupo);
+    const g = a.cat === "oficina" ? itens.filter(b => b.cat === "oficina" && b.turno === a.turno) : itens.filter(b => b.ini === a.ini && b.cat !== "oficina");
+    g.forEach(b => vistos.add(b.id)); out.push(g);
   }
   return out;
 }
 function render() {
-  document.getElementById("botoes").innerHTML = DIAS.map(d => `<a href="#${d.hash}">${d.b}<small>${d.d}</small></a>`).join("");
-  let html = "";
-  for (const d of DIAS) {
-    html += `<section class="dia" id="dia-${d.hash}"><div class="wrap"><h2>${d.nome}</h2>`;
-    for (const t of TURNOS) {
-      const itens = ATIV.filter(a => a.dia === d.k && a.turno === t).sort((a, b) => mins(a.ini) - mins(b.ini));
-      if (!itens.length) continue;
-      const grupo = itens.find(a => a.grupo)?.grupo;
-      html += `<div class="turno">${t.toUpperCase()}${grupo ? " - " + esc(grupo).toUpperCase() : ""}</div>`;
-      for (const g of blocos(itens)) {
-        const ini = g.map(a => a.ini).sort()[0], fim = g.map(a => a.fim).sort().slice(-1)[0];
-        const varia = g.length > 1 && new Set(g.map(a => a.ini + a.fim)).size > 1;
-        html += `<div class="linha"><div class="hora">${ini} - ${fim}</div><div class="cards">${g.map(a => card(a, varia)).join("")}</div></div>`;
-      }
+  document.getElementById("botoes").innerHTML = DIAS.map(d => `<a href="#${d.hash}" ${d.k === dia ? 'aria-current="page"' : ""}>${d.b}<small>${d.d}</small></a>`).join("");
+  document.getElementById("filtros").innerHTML = "<b>Legenda</b>" + FILTROS.map(([k, l, c]) => `<button class="f" style="--c: var(${c})" data-f="${k}" aria-pressed="${k === filtro}">${l}</button>`).join("");
+  const d = DIAS.find(x => x.k === dia);
+  let html = `<h2>${d.nome}</h2>`, algum = false;
+  for (const t of TURNOS) {
+    const todos = ATIV.filter(a => a.dia === d.k && a.turno === t).sort((a, b) => mins(a.ini) - mins(b.ini));
+    const itens = todos.filter(a => filtro === "todas" || grupoCor(a) === filtro);
+    if (!itens.length) continue;
+    algum = true;
+    const grupo = todos.find(a => a.grupo)?.grupo;
+    html += `<div class="turno">${t.toUpperCase()}${grupo ? " - " + esc(grupo).toUpperCase() : ""}</div>`;
+    for (const g of blocos(itens)) {
+      const ini = g.map(a => a.ini).sort()[0], fim = g.map(a => a.fim).sort().slice(-1)[0];
+      const varia = g.length > 1 && new Set(g.map(a => a.ini + a.fim)).size > 1;
+      html += `<div class="linha"><div class="hora">${ini} - ${fim}</div><div class="cards ${g.length === 1 ? "um" : ""}">${g.map(a => card(a, varia)).join("")}</div></div>`;
     }
-    html += `</div></section>`;
   }
+  if (!algum) html += `<p class="vazio">Nenhuma atividade deste tipo neste dia. Escolha outro dia ou clique em "Tudo".</p>`;
   document.getElementById("programacao").innerHTML = html;
 }
 function iniciais(n) { const p = n.replace(/^(Profa?\.|Dr\.|Piloto)\s+/g, "").replace(/\(.*\)/, "").trim().split(/\s+/); return (p[0][0] + (p.length > 1 ? p[p.length - 1][0] : "")).toUpperCase(); }
@@ -242,17 +246,22 @@ function abrir(id, marcar = true) {
 function rota() {
   const h = location.hash.slice(1), dlg = document.getElementById("dlg");
   const d = DIAS.find(x => x.hash === h), a = ATIV.find(x => x.id === h);
-  if (d) { if (dlg.open) dlg.close(); document.getElementById("dia-" + d.hash).scrollIntoView({ block: "start" }); }
-  else if (a) { document.getElementById("dia-" + DIAS.find(x => x.k === a.dia).hash).scrollIntoView({ block: "start" }); abrir(a.id, false); }
+  if (d) { dia = d.k; if (dlg.open) dlg.close(); }
+  else if (a) dia = a.dia;
+  render();
+  if (a) abrir(a.id, false);
 }
-document.addEventListener("click", e => { const c = e.target.closest("button.card"); if (c) abrir(c.dataset.id); });
+document.addEventListener("click", e => {
+  const c = e.target.closest("button.card"); if (c) { abrir(c.dataset.id); return; }
+  const f = e.target.closest(".f");
+  if (f) { filtro = f.dataset.f; try { localStorage.setItem("jenpex_f", filtro); } catch (er) {} render(); }
+});
 const dlg = document.getElementById("dlg");
 dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 dlg.addEventListener("close", () => { const a = ATIV.find(x => "#" + x.id === location.hash); if (a) location.hash = DIAS.find(x => x.k === a.dia).hash; });
 window.addEventListener("hashchange", rota);
-render();
-if (location.hash) rota();
-else { const d = DIAS.find(x => x.iso === hoje()); if (d) document.getElementById("dia-" + d.hash).scrollIntoView({ block: "start" }); }
+if (!location.hash) { const d = DIAS.find(x => x.iso === hoje()); if (d) dia = d.k; }
+rota();
 </script>
 
 </body>
